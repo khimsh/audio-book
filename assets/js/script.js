@@ -64,21 +64,44 @@ stop.addEventListener('click', () => {
 const progressBar = document.querySelector('.progress-bar');
 const progressFilled = document.querySelector('.progress-filled');
 
-const handleProgress = () => {
+// Update progress bar
+audio.addEventListener('timeupdate', () => {
   const percent = (audio.currentTime / audio.duration) * 100;
   progressFilled.style.width = `${percent}%`;
-};
-
-audio.addEventListener('timeupdate', () => {
-  handleProgress();
 
   // save current playback time to local storage
   localStorage.setItem('playback', JSON.stringify(audio.currentTime));
+
+  document.querySelector('.current-time').innerHTML = convertTimeToString(
+    audio.currentTime
+  );
 });
 
-function scrub(e) {
+// Rewind using progress bar
+progressBar.addEventListener('click', (e) => {
   const scrubTime = (e.offsetX / progressBar.offsetWidth) * audio.duration;
   audio.currentTime = scrubTime;
+});
+
+function convertTimeToString(time) {
+  totalNumberOfSeconds = Math.floor(time);
+  const hours = parseInt(totalNumberOfSeconds / 3600);
+  const minutes = parseInt((totalNumberOfSeconds - hours * 3600) / 60);
+  const seconds = Math.floor(
+    totalNumberOfSeconds - (hours * 3600 + minutes * 60)
+  );
+  const result =
+    hours +
+    ':' +
+    (minutes < 10 ? +minutes : minutes) +
+    ':' +
+    (seconds < 10 ? '0' + seconds : seconds);
+
+  return result;
 }
 
-progressBar.addEventListener('click', scrub);
+audio.addEventListener('loadedmetadata', () => {
+  document.querySelector('.duration').innerHTML = convertTimeToString(
+    audio.duration
+  );
+});
