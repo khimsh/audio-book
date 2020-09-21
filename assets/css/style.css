@@ -7,6 +7,9 @@
 }
 
 body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
   background: url('../images/BG.jpg');
@@ -18,14 +21,17 @@ body {
 
 img {
   display: block;
-  width: 280px;
+  width: 260px;
   height: auto;
   object-fit: cover;
 }
 
 main {
+  flex-grow: 1;
   width: 100%;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 article {
@@ -37,16 +43,26 @@ article {
 
 figure {
   flex-grow: 1;
+  padding: 20px 0 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .dashboard {
+  margin-top: auto;
   width: 100%;
-  padding: 20px;
-  background: rgba(21, 18, 11, 0.8);
+  background: rgba(197, 49, 30, 0.7);
   backdrop-filter: blur(15px);
+}
+
+.metadata {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  max-width: 1200px;
+  width: 95%;
+  margin: 0 auto;
 }
 
 h1,
@@ -61,7 +77,6 @@ h1 {
 }
 
 h2 {
-  margin-bottom: 15px;
   font-size: 16px;
   color: rgb(228, 228, 228);
 }
@@ -70,46 +85,57 @@ h2 strong {
   font-weight: 500;
 }
 
-.controls {
-  display: flex;
-  align-items: center;
-}
-
-.controls > div {
-  flex-shrink: 0;
+.times p {
+  color: #fff;
 }
 
 .audio-controls {
-  margin-right: 20px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.controls button {
+.audio-controls button {
   background: none;
   border: none;
   cursor: pointer;
   padding: 10px;
+  margin-right: 10px;
 }
 
-.controls button:hover svg {
-  fill: rgb(163, 163, 163);
+.audio-controls .download {
+  padding: 10px;
 }
 
-.controls svg {
+.audio-controls svg {
   display: block;
   fill: #fff;
   transition: all 0.15s ease-in;
+  width: 20px;
+  height: 20px;
 }
 
-.progress-wrapper {
-  flex-grow: 1;
-  margin-right: 20px;
-
+#playPause {
+  width: 50px;
+  height: 50px;
+  background: #c5321e;
+  border-radius: 50%;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
+#playPause svg {
+  width: 28px;
+  height: 28px;
+  transform: translateX(2px);
+}
+
+.progress-wrapper {
+}
+
 .progress-bar {
-  margin: 0 15px;
   width: 100%;
   height: 5px;
   background: #fff;
@@ -136,4 +162,41 @@ h2 strong {
   color: #fff;
   font-size: 14px;
   flex-grow: 0;
+}
+
+footer {
+  background: #232323;
+  padding: 5px 0;
+  text-align: center;
+}
+
+footer p {
+  font-size: 14px;
+  color: #fff;
+}
+
+footer p a {
+  color: #c5321e;
+}
+
+@media only screen and (max-width: 560px) {
+  img {
+    width: 220px;
+  }
+
+  .metadata {
+    flex-direction: column-reverse;
+  }
+
+  .times {
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  h2 {
+    font-size: 14px;
+  }
 }
