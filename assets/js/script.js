@@ -23,7 +23,7 @@ playPause.addEventListener('click', () => {
   } else {
     audio.pause();
     playPause.innerHTML = `
-    <svg width="24" height="24" viewBox="0 0 24 24">
+    <svg width="24" height="24" viewBox="0 0 24 24" class="playIcon">
       <path
         d="M5.541 2.159A1 1 0 004 3v18a1 1 0 001.541.841l14-9a1 1 0 000-1.682zM6 4.832L17.151 12 6 19.168z"
       />
@@ -40,24 +40,6 @@ rewind.addEventListener('click', () => {
 // Fastforward 30 seconds
 fastForward.addEventListener('click', () => {
   audio.currentTime += 30;
-});
-
-// Stop the track and go back to the beginning
-stop.addEventListener('click', () => {
-  // Reset current time
-  audio.currentTime = 0;
-
-  // Stop playing
-  audio.pause();
-
-  // Switch icon to play
-  playPause.innerHTML = `
-    <svg width="24" height="24" viewBox="0 0 24 24">
-      <path
-        d="M5.541 2.159A1 1 0 004 3v18a1 1 0 001.541.841l14-9a1 1 0 000-1.682zM6 4.832L17.151 12 6 19.168z"
-      />
-    </svg>
-    `;
 });
 
 // Update progress bar
